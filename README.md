@@ -2,7 +2,26 @@
 
 **AuditIQ** is a Retrieval-Augmented Generation (RAG) system for asking natural-language questions over financial reports, annual reports, and 10-K filings.
 
+## Overview
+
+Financial reports are long, highly structured documents containing narrative text, financial terminology, tables, and cross-references.
+
+AuditIQ converts these documents into searchable representations and builds a retrieval pipeline that can identify the most relevant evidence before sending it to an LLM.
+
+The system supports experimentation with different:
+
+- Chunking strategies
+- Embedding models
+- Retrieval methods
+- Reranking configurations
+- Retrieval depths
+
+The pipeline is evaluated independently before being used for end-to-end answer generation.
+
+---
+
 ## Architecture
+
 ```mermaid
 flowchart LR
 
@@ -63,64 +82,6 @@ flowchart LR
 
     style INDEX fill:#c9785b,stroke:#c9785b,color:#ffffff
     style ANSWER fill:#c9785b,stroke:#c9785b,color:#ffffff
-```
-
-It combines **semantic retrieval, keyword retrieval, reranking, and LLM-based generation** to produce answers grounded in the source document with page-level citations.
-
----
-
-## Overview
-
-Financial reports are long, highly structured documents containing narrative text, financial terminology, tables, and cross-references.
-
-AuditIQ converts these documents into searchable representations and builds a retrieval pipeline that can identify the most relevant evidence before sending it to an LLM.
-
-The system supports experimentation with different:
-
-- Chunking strategies
-- Embedding models
-- Retrieval methods
-- Reranking configurations
-- Retrieval depths
-
-The pipeline is evaluated independently before being used for end-to-end answer generation.
-
----
-
-## Architecture
-
-```mermaid
-flowchart TD
-
-    A[Financial Report / 10-K PDF]
-
-    A --> B[PDF Text Extraction]
-    B --> C[Chunking]
-
-    C --> D[Embedding Model]
-    C --> E[BM25 Keyword Index]
-
-    D --> F[FAISS Vector Index]
-
-    Q[User Question] --> Q1[Query Embedding]
-    Q --> F
-    Q --> E
-
-    F --> G[Semantic Retrieval]
-    E --> H[Keyword Retrieval]
-
-    G --> I[Reciprocal Rank Fusion]
-    H --> I
-
-    I --> J[Top Candidates]
-    J --> K[Cross-Encoder Reranker]
-
-    K --> L[Top Context]
-    L --> M[Gemini]
-    Q --> M
-
-    M --> N[Grounded Answer]
-    N --> O[Page Citations]
 ```
 
 ### Pipeline
