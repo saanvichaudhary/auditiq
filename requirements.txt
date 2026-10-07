@@ -1,9 +1,16 @@
-langchain
-langchain-google-genai
-langchain-community
-faiss-cpu
-pymupdf
 streamlit
-ragas
 python-dotenv
+pymupdf
+numpy
+rank-bm25
+faiss-cpu
 sentence-transformers
+langchain-core
+langchain-text-splitters
+langchain-community
+langchain-huggingface
+langchain-google-genai
+pytest
+# optional, only for `evaluator.py --ragas`
+ragas
+datasets
