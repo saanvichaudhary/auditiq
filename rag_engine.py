@@ -8,6 +8,7 @@ Public API is unchanged from v1, so app.py keeps working as-is:
 """
 import os
 import re
+import time
 from functools import lru_cache
 
 import fitz  # PyMuPDF
@@ -24,10 +25,10 @@ DEFAULT_CONFIG = {
     "chunker": "section_800",
     "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
     "mode": "hybrid",
-    "rerank": False,
+    "rerank": True,
     "k": 5,
-    "abstain_below": 0.15,   # best-chunk cosine below this -> don't even call the LLM (tune on your data)
-    "low_conf_below": 0.30,  # below this -> show the low-confidence badge
+    "abstain_below": 0.35,   # best-chunk cosine below this -> don't even call the LLM (tune on your data)
+    "low_conf_below": 0.50,  # below this -> show the low-confidence badge
 }
 
 REFUSAL = "I'm not confident — the document may not cover this. Please verify manually."
@@ -77,7 +78,7 @@ def _default_llm():
     if not GEMINI_API_KEY:
         raise RuntimeError("GEMINI_API_KEY is not set. Put it in a .env file.")
     from langchain_google_genai import ChatGoogleGenerativeAI
-    return ChatGoogleGenerativeAI(model="gemini-2.5-flash",
+    return ChatGoogleGenerativeAI(model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash"),
                                   google_api_key=GEMINI_API_KEY, temperature=0.1)
 
 
@@ -107,11 +108,18 @@ def ask(qa, question):
     context = "\n\n".join(
         f"[{i}] (page {d.metadata['page']}) {d.page_content}" for i, d in enumerate(docs, 1)
     )
-    try:
-        raw = _resp_text(llm.invoke(PROMPT.format(refusal=REFUSAL, context=context, question=question)))
-    except Exception as e:  # surface API/key/quota problems instead of crashing the UI
-        return {**base, "answer": f"LLM error: {e}", "pages_cited": [], "cited_chunk_ids": [],
-                "low_confidence": True, "abstained": False, "error": str(e)}
+    prompt = PROMPT.format(refusal=REFUSAL, context=context, question=question)
+    raw = None
+    for attempt in range(3):
+        try:
+            raw = _resp_text(llm.invoke(prompt))
+            break
+        except Exception as e:  # surface API/key/quota problems instead of crashing the UI
+            if ("503" in str(e) or "UNAVAILABLE" in str(e)) and attempt < 2:
+                time.sleep(5 * (attempt + 1))  # model overloaded: wait and retry
+                continue
+            return {**base, "answer": f"LLM error: {e}", "pages_cited": [], "cited_chunk_ids": [],
+                    "low_confidence": True, "abstained": False, "error": str(e)}
 
     cited = sorted({int(n) for n in re.findall(r"\[(\d+)\]", raw) if 1 <= int(n) <= len(docs)})
     cited_docs = [docs[n - 1] for n in cited]
@@ -121,6 +129,8 @@ def ask(qa, question):
                    lambda m: f"[p.{docs[int(m.group(1)) - 1].metadata['page']}]"
                    if 1 <= int(m.group(1)) <= len(docs) else m.group(0), raw)
     refused = "not confident" in raw.lower() or "verify manually" in raw.lower()
+    if refused:
+        pages, cited = [], []
     return {**base, "answer": shown, "pages_cited": pages, "cited_chunk_ids": cited,
             "low_confidence": refused or top_cos < cfg["low_conf_below"],
             "abstained": False}

@@ -29,7 +29,7 @@ def run(qa, questions, sleep=2.0):
             "answer_match": (any(norm(p) in norm(r["answer"]) for p in phrases) if phrases else None),
             "citation_ok": any(is_hit(d, q) for d in cited_docs),
             "retrieval_hit": any(is_hit(d, q) for d in r["retrieved_docs"]),
-            "abstained": r["low_confidence"], "top_cosine": round(r["top_cosine"], 3),
+            "abstained": r["low_confidence"] and not r["error"], "top_cosine": round(r["top_cosine"], 3),
             "contexts": [d.page_content for d in r["retrieved_docs"]], "error": r["error"],
         })
         time.sleep(sleep)  # be gentle with free-tier rate limits
@@ -75,6 +75,7 @@ if __name__ == "__main__":
     ap.add_argument("--mode", default=DEFAULT_CONFIG["mode"])
     ap.add_argument("--rerank", action="store_true")
     ap.add_argument("--ragas", action="store_true")
+    ap.add_argument("--only", nargs="+")
     ap.add_argument("--sleep", type=float, default=2.0)
     ap.add_argument("--out", default="results/e2e.json")
     a = ap.parse_args()
@@ -82,6 +83,8 @@ if __name__ == "__main__":
     pages = extract_text_from_pdf(a.pdf)
     with open(a.eval) as f:
         qs = validate(pages, json.load(f))
+    if a.only:
+        qs = [q for q in qs if q["id"] in a.only]
     index, _ = build_vectorstore(pages, {"chunker": a.chunker})
     qa = build_qa_chain(index, config={"mode": a.mode, "rerank": a.rerank})
     rows = run(qa, qs, a.sleep)

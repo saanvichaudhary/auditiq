@@ -1,34 +1,221 @@
 [
-  {"id": "q01", "type": "numeric", "question": "What were Apple's total net sales in fiscal 2025?", "gold_phrases": ["416,161"], "gold_pages": [26, 27, 33], "answer": "$416,161 million"},
-  {"id": "q02", "type": "numeric", "question": "What were iPhone net sales in fiscal 2025?", "gold_phrases": ["$ 209,586"], "gold_pages": [40], "answer": "$209,586 million"},
-  {"id": "q03", "type": "numeric", "question": "What were Services net sales in fiscal 2025?", "gold_phrases": ["Services 109,158"], "gold_pages": [27, 33], "answer": "$109,158 million"},
-  {"id": "q04", "type": "numeric", "question": "What was Apple's net income in fiscal 2025?", "gold_phrases": ["112,010"], "gold_pages": [33, 34, 36, 37, 40], "answer": "$112,010 million"},
-  {"id": "q05", "type": "numeric", "question": "What was diluted earnings per share in fiscal 2025?", "gold_phrases": ["Diluted $ 7.46"], "gold_pages": [33, 40], "answer": "$7.46"},
-  {"id": "q06", "type": "numeric", "question": "How much did Apple spend on research and development in fiscal 2025?", "gold_phrases": ["$ 34,550"], "gold_pages": [28], "answer": "$34,550 million"},
-  {"id": "q07", "type": "numeric", "question": "What were Greater China net sales in fiscal 2025?", "gold_phrases": ["$ 64,377"], "gold_pages": [53], "answer": "$64,377 million"},
-  {"id": "q08", "type": "numeric", "question": "How many full-time equivalent employees did Apple have?", "gold_phrases": ["166,000 full-time equivalent"], "gold_pages": [7], "answer": "Approximately 166,000 full-time equivalent employees as of September 27, 2025"},
-  {"id": "q09", "type": "narrative", "question": "What does Apple say about tariffs and trade restrictions as a risk?",
-   "gold_phrases": ["such as tariffs and other controls on imports or exports", "new U.S. Tariffs were announced", "the imposition of new or increased tariffs and other trade restrictions"],
-   "gold_pages": [9, 18, 26, 28],
-   "answer": "Trade restrictions such as tariffs can materially adversely affect the business and supply chain; new U.S. tariffs were announced from the second quarter of 2025, including on imports from China and India; tariff costs reduced Products gross margin."},
-  {"id": "q10", "type": "narrative", "question": "What risks does Apple describe around reliance on single-source suppliers or outsourcing partners?",
-   "gold_phrases": ["certain components are currently obtained from single or limited sources", "relies on single or limited sources for the supply and manufacture of many critical components", "performed in whole or in part by outsourcing partners"],
-   "gold_pages": [6, 9, 10, 11, 52],
-   "answer": "Certain components come from single or limited sources, so a business interruption at those sources could hurt results; most manufacturing is done by outsourcing partners located mainly in China mainland, India, Japan, South Korea, Taiwan and Vietnam."},
-  {"id": "q11", "type": "narrative", "question": "How does Apple recognize revenue for products and services?",
-   "gold_phrases": ["recognizes revenue at the amount to which it expects to be entitled"],
-   "gold_pages": [39],
-   "answer": "Apple recognizes revenue at the amount it expects to be entitled to when control of products or services is transferred to customers."},
-  {"id": "q12", "type": "narrative", "question": "What does Apple disclose about its share repurchase program?",
-   "gold_phrases": ["repurchased 402 million shares of its common stock for $89.3 billion", "has an authorized share repurchase program"],
-   "gold_pages": [23, 30, 50],
-   "answer": "During 2025 Apple repurchased 402 million shares for $89.3 billion; it has an authorized repurchase program that does not obligate it to buy a minimum amount of shares."},
-    {"id": "q13", "type": "narrative", "question": "What legal proceedings does Apple describe?",
-   "gold_phrases": ["formal noncompliance investigation against the Company", "civil antitrust lawsuit in the U.S. District Court for the District of New Jersey", "Epic Games, Inc. filed a lawsuit", "subject to other legal proceedings and claims that have not been fully resolved"],
-   "gold_pages": [22],
-   "answer": "Item 3 describes four matters. (1) EU Digital Markets Act investigations: the Commission opened formal investigations in March and June 2024 and fined Apple €500 million on April 23, 2025 in the Article 5(4) Investigation, which Apple has appealed. The Article 6(4) Investigation is still open, with potential fines of up to 10% of annual worldwide net sales. (2) A DOJ and state attorneys general antitrust lawsuit filed March 21, 2024, alleging monopolization of smartphone markets. (3) Epic Games, where the court found Apple in violation of the 2021 Injunction on April 30, 2025, and Apple has appealed to the Ninth Circuit. (4) Other ordinary-course legal proceedings and claims."},
-  {"id": "q14", "type": "narrative", "question": "What are Apple's cybersecurity risk management practices?",
-   "gold_phrases": ["has overall responsibility for identifying, assessing and managing any material risks from cybersecurity threats", "A dedicated Supplier Trust team manages information security risks", "The Audit Committee assists the Board in the oversight and monitoring of cybersecurity matters"],
-   "gold_pages": [21],
-   "answer": "Management, led by the Head of Corporate Information Security, is responsible for identifying, assessing and managing material cybersecurity risks. A dedicated Information Security team handles policies, training, security controls, monitoring, incident response and testing, and engages third parties as appropriate. A Supplier Trust team manages supplier-related security risk. Incidents are escalated to senior management and the Audit Committee, and the Audit Committee oversees cybersecurity and reports to the Board."}
-  ]
+  {
+    "id": "q01",
+    "type": "numeric",
+    "question": "What were Apple's total net sales in fiscal 2025?",
+    "gold_phrases": [
+      "416,161"
+    ],
+    "gold_pages": [
+      26,
+      27,
+      33
+    ],
+    "answer": "$416,161 million",
+    "answer_phrases": [
+      "416,161"
+    ]
+  },
+  {
+    "id": "q02",
+    "type": "numeric",
+    "question": "What were iPhone net sales in fiscal 2025?",
+    "gold_phrases": [
+      "$ 209,586"
+    ],
+    "gold_pages": [
+      40
+    ],
+    "answer": "$209,586 million",
+    "answer_phrases": [
+      "209,586"
+    ]
+  },
+  {
+    "id": "q03",
+    "type": "numeric",
+    "question": "What were Services net sales in fiscal 2025?",
+    "gold_phrases": [
+      "Services 109,158"
+    ],
+    "gold_pages": [
+      27,
+      33
+    ],
+    "answer": "$109,158 million",
+    "answer_phrases": [
+      "109,158"
+    ]
+  },
+  {
+    "id": "q04",
+    "type": "numeric",
+    "question": "What was Apple's net income in fiscal 2025?",
+    "gold_phrases": [
+      "112,010"
+    ],
+    "gold_pages": [
+      33,
+      34,
+      36,
+      37,
+      40
+    ],
+    "answer": "$112,010 million",
+    "answer_phrases": [
+      "112,010"
+    ]
+  },
+  {
+    "id": "q05",
+    "type": "numeric",
+    "question": "What was diluted earnings per share in fiscal 2025?",
+    "gold_phrases": [
+      "Diluted $ 7.46"
+    ],
+    "gold_pages": [
+      33,
+      40
+    ],
+    "answer": "$7.46",
+    "answer_phrases": [
+      "7.46"
+    ]
+  },
+  {
+    "id": "q06",
+    "type": "numeric",
+    "question": "How much did Apple spend on research and development in fiscal 2025?",
+    "gold_phrases": [
+      "$ 34,550"
+    ],
+    "gold_pages": [
+      28
+    ],
+    "answer": "$34,550 million",
+    "answer_phrases": [
+      "34,550"
+    ]
+  },
+  {
+    "id": "q07",
+    "type": "numeric",
+    "question": "What were Greater China net sales in fiscal 2025?",
+    "gold_phrases": [
+      "$ 64,377"
+    ],
+    "gold_pages": [
+      53
+    ],
+    "answer": "$64,377 million",
+    "answer_phrases": [
+      "64,377"
+    ]
+  },
+  {
+    "id": "q08",
+    "type": "numeric",
+    "question": "How many full-time equivalent employees did Apple have?",
+    "gold_phrases": [
+      "166,000 full-time equivalent"
+    ],
+    "gold_pages": [
+      7
+    ],
+    "answer": "Approximately 166,000 full-time equivalent employees as of September 27, 2025",
+    "answer_phrases": [
+      "166,000"
+    ]
+  },
+  {
+    "id": "q09",
+    "type": "narrative",
+    "question": "What does Apple say about tariffs and trade restrictions as a risk?",
+    "gold_phrases": [
+      "such as tariffs and other controls on imports or exports",
+      "new U.S. Tariffs were announced",
+      "the imposition of new or increased tariffs and other trade restrictions"
+    ],
+    "gold_pages": [
+      9,
+      18,
+      26,
+      28
+    ],
+    "answer": "Trade restrictions such as tariffs can materially adversely affect the business and supply chain; new U.S. tariffs were announced from the second quarter of 2025, including on imports from China and India; tariff costs reduced Products gross margin."
+  },
+  {
+    "id": "q10",
+    "type": "narrative",
+    "question": "What risks does Apple describe around reliance on single-source suppliers or outsourcing partners?",
+    "gold_phrases": [
+      "certain components are currently obtained from single or limited sources",
+      "relies on single or limited sources for the supply and manufacture of many critical components",
+      "performed in whole or in part by outsourcing partners"
+    ],
+    "gold_pages": [
+      6,
+      9,
+      10,
+      11,
+      52
+    ],
+    "answer": "Certain components come from single or limited sources, so a business interruption at those sources could hurt results; most manufacturing is done by outsourcing partners located mainly in China mainland, India, Japan, South Korea, Taiwan and Vietnam."
+  },
+  {
+    "id": "q11",
+    "type": "narrative",
+    "question": "How does Apple recognize revenue for products and services?",
+    "gold_phrases": [
+      "recognizes revenue at the amount to which it expects to be entitled"
+    ],
+    "gold_pages": [
+      39
+    ],
+    "answer": "Apple recognizes revenue at the amount it expects to be entitled to when control of products or services is transferred to customers."
+  },
+  {
+    "id": "q12",
+    "type": "narrative",
+    "question": "What does Apple disclose about its share repurchase program?",
+    "gold_phrases": [
+      "repurchased 402 million shares of its common stock for $89.3 billion",
+      "has an authorized share repurchase program"
+    ],
+    "gold_pages": [
+      23,
+      30,
+      50
+    ],
+    "answer": "During 2025 Apple repurchased 402 million shares for $89.3 billion; it has an authorized repurchase program that does not obligate it to buy a minimum amount of shares."
+  },
+  {
+    "id": "q13",
+    "type": "narrative",
+    "question": "What legal proceedings does Apple describe?",
+    "gold_phrases": [
+      "formal noncompliance investigation against the Company",
+      "civil antitrust lawsuit in the U.S. District Court for the District of New Jersey",
+      "Epic Games, Inc. filed a lawsuit",
+      "subject to other legal proceedings and claims that have not been fully resolved"
+    ],
+    "gold_pages": [
+      22
+    ],
+    "answer": "Item 3 describes four matters. (1) EU Digital Markets Act investigations: the Commission opened formal investigations in March and June 2024 and fined Apple \u20ac500 million on April 23, 2025 in the Article 5(4) Investigation, which Apple has appealed. The Article 6(4) Investigation is still open, with potential fines of up to 10% of annual worldwide net sales. (2) A DOJ and state attorneys general antitrust lawsuit filed March 21, 2024, alleging monopolization of smartphone markets. (3) Epic Games, where the court found Apple in violation of the 2021 Injunction on April 30, 2025, and Apple has appealed to the Ninth Circuit. (4) Other ordinary-course legal proceedings and claims."
+  },
+  {
+    "id": "q14",
+    "type": "narrative",
+    "question": "What are Apple's cybersecurity risk management practices?",
+    "gold_phrases": [
+      "has overall responsibility for identifying, assessing and managing any material risks from cybersecurity threats",
+      "A dedicated Supplier Trust team manages information security risks",
+      "The Audit Committee assists the Board in the oversight and monitoring of cybersecurity matters"
+    ],
+    "gold_pages": [
+      21
+    ],
+    "answer": "Management, led by the Head of Corporate Information Security, is responsible for identifying, assessing and managing material cybersecurity risks. A dedicated Information Security team handles policies, training, security controls, monitoring, incident response and testing, and engages third parties as appropriate. A Supplier Trust team manages supplier-related security risk. Incidents are escalated to senior management and the Audit Committee, and the Audit Committee oversees cybersecurity and reports to the Board."
+  }
+]
